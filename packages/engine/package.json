@@ -21,12 +21,12 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "zod": "^3.23.8",
-    "@faker-js/faker": "^9.0.3",
+    "zod": "^4.4.3",
+    "@faker-js/faker": "^10.6.0",
     "randexp": "^0.5.3"
   },
   "devDependencies": {
-    "typescript": "^5.6.3",
-    "@types/node": "^22.8.1"
+    "typescript": "^7.0.2",
+    "@types/node": "^26.3.0"
   }
 }
