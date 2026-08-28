@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-base: #000000;
+    --bg-panel: #0a0a0a;
+    --bg-surface: #121212;
+    --bg-hover: #1c1c1c;
+    --border-subtle: #1e1e1e;
+    --border-strong: #2c2c2c;
+    --border-focus: #4b5563;
+    
+    --text-primary: #ededed;
+    --text-secondary: #a1a1aa;
+    --text-tertiary: #52525b;
+    
+    --accent-primary: #ffffff;
+    --accent-blue: #3b82f6;
+    --accent-blue-bg: rgba(59, 130, 246, 0.1);
+    --accent-green: #10b981;
+    --accent-amber: #f59e0b;
+    --accent-purple: #8b5cf6;
+    
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 10px;
+  }
+
+  body {
+    @apply bg-[var(--bg-base)] text-[var(--text-primary)] font-sans antialiased overflow-hidden selection:bg-[var(--accent-blue-bg)] selection:text-white;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-1.5 bg-transparent border border-[var(--border-strong)] text-[var(--text-primary)] px-3 py-1.5 rounded-[var(--radius-md)] text-xs font-medium cursor-pointer transition-all duration-150;
+  }
+  .btn:hover {
+    @apply bg-[var(--bg-hover)] border-[var(--border-focus)];
+  }
+  .btn-primary {
+    @apply bg-[var(--accent-primary)] text-[var(--bg-base)] border-[var(--accent-primary)];
+  }
+  .btn-primary:hover {
+    @apply opacity-90 bg-[var(--accent-primary)] border-[var(--accent-primary)];
+  }
+  .btn-ghost {
+    @apply border-transparent;
+  }
+  .btn-ghost:hover {
+    @apply bg-[var(--bg-hover)] border-transparent;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-1.5 py-0.5 rounded-[var(--radius-sm)] text-[10px] font-medium uppercase tracking-wider;
+  }
+  .badge-green {
+    @apply bg-[rgba(16,185,129,0.1)] text-[var(--accent-green)] border border-[rgba(16,185,129,0.2)];
+  }
+  
+  .input-base {
+    @apply bg-[var(--bg-surface)] border border-[var(--border-strong)] text-[var(--text-primary)] px-2.5 py-1.5 rounded-[var(--radius-sm)] text-sm w-full outline-none transition-colors duration-150;
+  }
+  .input-base:focus {
+    @apply border-[var(--accent-blue)];
+  }
+}
+
+/* Precision slim scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-focus);
+}

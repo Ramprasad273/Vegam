@@ -1,0 +1,29 @@
+node_modules/
+dist/
+build/
+.next/
+.turbo/
+*.duckdb
+*.duckdb.wal
+*.log
+.env
+.env.local
+.env.*.local
+coverage/
+planning/
+.pnpm-store/
+*.pnpm-store/
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+playwright-report/
+test-results/
+
+# Internal dev scripts (not for distribution)
+oss-cleanup.ps1
+scripts/oss-cleanup.ps1
+
+# OS and editor artifacts
+.DS_Store
+Thumbs.db
+*.code-workspace
+.vscode/

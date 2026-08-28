@@ -1,0 +1,22 @@
+FROM node:22-alpine AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+
+FROM base AS builder
+WORKDIR /app
+COPY . .
+RUN pnpm install --no-frozen-lockfile --ignore-scripts
+RUN pnpm --filter @vegam/cli build
+
+FROM base AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/pnpm-workspace.yaml ./pnpm-workspace.yaml
+COPY --from=builder /app/packages/cli ./packages/cli
+COPY --from=builder /app/packages/engine ./packages/engine
+COPY --from=builder /app/packages/connectors ./packages/connectors
+COPY --from=builder /app/node_modules ./node_modules
+
+ENTRYPOINT ["node", "packages/cli/dist/cli.js"]

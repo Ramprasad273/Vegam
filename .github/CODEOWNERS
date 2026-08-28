@@ -1,0 +1,6 @@
+# SOC2 SDLC Compliance: Require specific owners to review PRs
+
+*       @engineering-leads
+/packages/engine/   @backend-core
+/packages/studio/   @frontend-core
+/.github/           @devsecops

@@ -1,0 +1,37 @@
+{
+  "name": "@vegam/connectors",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Universal Outbound Protocol Suite (BYOB) for Kafka, RabbitMQ, NATS, MQTT, and Webhooks",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -b --watch",
+    "clean": "rimraf dist",
+    "test": "node --test \"dist/__tests__/**/*.test.js\"",
+    "type-check": "tsc --noEmit"
+  },
+
+  "dependencies": {
+    "@vegam/engine": "workspace:*",
+    "kafkajs": "^2.2.4",
+    "amqplib": "^0.10.4",
+    "nats": "^2.28.2",
+    "mqtt": "^5.10.1",
+    "axios": "^1.7.7"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "@types/node": "^22.8.1",
+    "@types/amqplib": "^0.10.5"
+  }
+}

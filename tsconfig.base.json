@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@vegam/engine": ["packages/engine/src/index.ts"],
+      "@vegam/connectors": ["packages/connectors/src/index.ts"],
+      "@vegam/templates": ["packages/templates/src/index.ts"],
+      "@vegam/cli": ["packages/cli/src/index.ts"]
+    }
+  }
+}

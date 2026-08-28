@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  vegam-studio:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - VEGAM_GOVERNOR_ENABLED=true
+      - NODE_ENV=production
+    restart: unless-stopped
+    # Note: Vegam Studio is stateless — all telemetry is held in-process per request.
+    # No persistent volume is required for the current release.

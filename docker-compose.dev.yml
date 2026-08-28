@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  vegam-studio:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - VEGAM_GOVERNOR_ENABLED=false
+      - NODE_ENV=development
+    volumes:
+      - ./packages:/app/packages
+      - ./package.json:/app/package.json
+      - ./pnpm-workspace.yaml:/app/pnpm-workspace.yaml
+      - /app/node_modules
+      - /app/packages/studio/node_modules
+      - /app/packages/engine/node_modules
+      - /app/packages/connectors/node_modules
+      - /app/packages/templates/node_modules
+      - /app/packages/cli/node_modules
+      - vegam_data:/app/data
+    command: ["pnpm", "--filter", "@vegam/studio", "dev"]
+
+  redpanda:
+    image: docker.redpanda.com/redpandadata/redpanda:latest
+    command:
+      - redpanda start
+      - --smp 1
+      - --overprovisioned
+      - --kafka-addr internal://0.0.0.0:9092,external://0.0.0.0:19092
+      - --advertise-kafka-addr internal://redpanda:9092,external://localhost:19092
+      - --pandaproxy-addr internal://0.0.0.0:8082,external://0.0.0.0:18082
+      - --advertise-pandaproxy-addr internal://redpanda:8082,external://localhost:18082
+    ports:
+      - "19092:19092"
+      - "18082:18082"
+      - "9644:9644"
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER:-vegam}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD:?RABBITMQ_PASSWORD must be set in .env}
+
+  nats:
+    image: nats:latest
+    command: "-js"
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+
+volumes:
+  vegam_data:

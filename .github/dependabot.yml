@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: "npm" # Dependabot handles pnpm via npm ecosystem config
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "next" # Ignored for manual QA testing before framework upgrades
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
