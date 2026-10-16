@@ -84,7 +84,7 @@ jobs:
         run: pnpm --filter @vegam/studio exec playwright install --with-deps
       - name: Run Playwright Tests
         run: pnpm --filter @vegam/studio run test:e2e
-      - uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.6.0
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v4.6.0
         if: always()
         with:
           name: playwright-report
